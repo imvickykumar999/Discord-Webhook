@@ -24,7 +24,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return  
-    print(f"📩 {message.author} (ID: {message.author.id}) said: {message.content}")
+    print(f"📩 {message.author} (ID: {message.author.id}) said in channel {message.channel.id}: {message.content}")
 
 # Function to start the bot
 def run_bot():
