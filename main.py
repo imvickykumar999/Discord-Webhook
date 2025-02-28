@@ -11,10 +11,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class DiscordGroqBot:
-    def __init__(self, bot_token, groq_api_key, flask_port):
+    def __init__(self, bot_token, groq_api_key):
         self.bot_token = bot_token
         self.groq_api_key = groq_api_key
-        self.flask_port = flask_port
+        self.flask_port = 8000
 
         # Discord Intent Configuration
         self.intents = discord.Intents.default()
@@ -47,7 +47,7 @@ class DiscordGroqBot:
             data = {
                 "model": "llama-3.2-1b-preview",
                 "messages": [
-                    {"role": "system", "content": "You are a helpful assistant and include emojis in your reply."},
+                    {"role": "system", "content": "You are a helpful assistant, give short answers and include emojis in your reply."},
                     {"role": "user", "content": message_text}
                 ],
                 "temperature": 1,
@@ -74,7 +74,8 @@ class DiscordGroqBot:
         print(f"✅ Logged in as {self.client.user}")
 
     async def on_message(self, message):
-        if message.author == self.client.user:
+        # if message.author == self.client.user:
+        if message.author == self.client.user or message.author.bot:
             return  # Ignore the bot's own messages
 
         now = time.time()
@@ -107,11 +108,12 @@ class DiscordGroqBot:
 if __name__ == '__main__':
     DISCORD_BOT_TOKEN1 = os.getenv("DISCORD_BOT_TOKEN1")
     GROQ_API_KEY1 = os.getenv("GROQ_API_KEY1")
+    
     DISCORD_BOT_TOKEN2 = os.getenv("DISCORD_BOT_TOKEN2")
     GROQ_API_KEY2 = os.getenv("GROQ_API_KEY2")
 
-    bot1 = DiscordGroqBot(DISCORD_BOT_TOKEN1, GROQ_API_KEY1, 5000)
-    bot2 = DiscordGroqBot(DISCORD_BOT_TOKEN2, GROQ_API_KEY2, 8000)
+    bot1 = DiscordGroqBot(DISCORD_BOT_TOKEN1, GROQ_API_KEY1)
+    bot2 = DiscordGroqBot(DISCORD_BOT_TOKEN2, GROQ_API_KEY2)
 
     # Run both bots in separate threads
     thread1 = Thread(target=bot1.run)
