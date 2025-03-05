@@ -1,4 +1,7 @@
 # `Discord Bot` with `Flask` & `Groq API` 🚀
+
+    Blog : https://blogforge.pythonanywhere.com/blogs/how-to-create-a-discord-bot-from-scratch/
+
 ![image](https://github.com/user-attachments/assets/4f21469b-0b9d-448c-87e5-31e0c3a066ca)
 ![image](https://github.com/user-attachments/assets/d7a88a74-b5e1-4b19-ab12-e02d8a3b2439)
 
