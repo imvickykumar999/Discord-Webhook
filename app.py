@@ -37,7 +37,7 @@ def generate_reply(message_text):
             "Content-Type": "application/json"
         }
         data = {
-            "model": "llama-3.2-1b-preview",
+            "model": "meta-llama/llama-4-scout-17b-16e-instruct", # https://console.groq.com/playground
             "messages": [
                 {"role": "system", "content": "You are a helpful assistant and include emojis in your reply."},
                 {"role": "user", "content": message_text}
